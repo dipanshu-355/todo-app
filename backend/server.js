@@ -9,9 +9,22 @@ import auth from './middleware/authMiddleware.js';
 dotenv.config();
 
 const app = express();
-app.use(cors({
-    origin: process.env.FRONTEND_URL,
-    credentials: true}));
+const allowedOrigins = [
+  'https://todo-app-ebon-kappa.vercel.app', // ✅ Remove trailing slash
+];
+
+app.use(
+  cors({
+    origin: function (origin, callback) {
+      if (!origin || allowedOrigins.includes(origin)) {
+        callback(null, true);
+      } else {
+        callback(new Error('Not allowed by CORS'));
+      }
+    },
+    credentials: true,
+  })
+);
 app.use(express.json());
 
 mongoose.connect(process.env.MONGO_URI)
