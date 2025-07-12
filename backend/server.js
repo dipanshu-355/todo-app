@@ -7,10 +7,10 @@ import taskRoutes from './routes/tasks.js';
 import auth from './middleware/authMiddleware.js';
 
 dotenv.config();
-const allowedOrigins = [process.env.FRONTEND_URL, 'http://localhost:3000'];
+
 const app = express();
 app.use(cors({
-    origin: allowedOrigins,
+    origin: process.env.FRONTEND_URL,
     credentials: true}));
 app.use(express.json());
 
