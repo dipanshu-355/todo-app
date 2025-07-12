@@ -1,6 +1,6 @@
 import express from 'express';
 import Task from '../models/Task.js';
-
+import auth from '../middleware/authMiddleware.js';
 const router = express.Router();
 
 router.get('/', async (req, res) => {
