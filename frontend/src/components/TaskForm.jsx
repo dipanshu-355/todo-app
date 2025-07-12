@@ -7,7 +7,7 @@ const TaskForm = ({ onTaskAdded }) => {
     const handleSubmit = async (e) => {
         e.preventDefault();
         if (!title.trim()) return;
-        await fetch('/api/tasks', {
+        await fetch(`${process.env.REACT_APP_API_URL}/api/tasks`, {
             method: 'POST',
             headers: { 'Content-Type': 'application/json', Authorization: `Bearer ${localStorage.getItem('token')}`, },
             body: JSON.stringify({ title, description }),
