@@ -33,7 +33,7 @@ function Home() {
   }, []);
 
   const handleToggleComplete = async (id) => {
-    await fetch(`/api/tasks/${id}/complete`, {
+    await fetch(`${process.env.REACT_APP_API_URL}/api/tasks/${id}/complete`, {
       method: 'PATCH',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
@@ -43,7 +43,7 @@ function Home() {
   };
 
   const handleDeleteTask = async (id) => {
-    await fetch(`/api/tasks/${id}`, {
+    await fetch(`${process.env.REACT_APP_API_URL}/api/tasks/${id}`, {
       method: 'DELETE',
       headers: {
         Authorization: `Bearer ${localStorage.getItem('token')}`,
